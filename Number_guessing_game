@@ -1,0 +1,45 @@
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
+
+void playGame(int lowerBound, int upperBound) {
+    std::srand(std::time(0)); // Seed for random number generation
+    int targetNumber = lowerBound + (std::rand() % (upperBound - lowerBound + 1));
+    int guess, attempts = 0;
+
+    std::cout << "Guess a number between " << lowerBound << " and " << upperBound << ":\n";
+
+    while (true) {
+        std::cout << "Your guess: ";
+        std::cin >> guess;
+        attempts++;
+
+        if (guess < targetNumber) {
+            std::cout << "Too low. Try again.\n";
+        } else if (guess > targetNumber) {
+            std::cout << "Too high. Try again.\n";
+        } else {
+            std::cout << "Congratulations! You've guessed the number in " << attempts << " attempts.\n";
+            break;
+        }
+    }
+}
+
+int main() {
+    std::cout << "Welcome to the Number Guessing Game!\n";
+    int lowerBound, upperBound;
+
+    std::cout << "Enter the lower bound of the range: ";
+    std::cin >> lowerBound;
+
+    std::cout << "Enter the upper bound of the range: ";
+    std::cin >> upperBound;
+
+    if (lowerBound >= upperBound) {
+        std::cout << "Invalid range. The lower bound must be less than the upper bound.\n";
+    } else {
+        playGame(lowerBound, upperBound);
+    }
+
+    return 0;
+}-->
